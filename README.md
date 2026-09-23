@@ -97,11 +97,3 @@ Run tests: `pip install boto3 && python -m unittest discover tests`
 ## What I learned
 
 <!-- Write this yourself. -->
-
-## Next steps
-
-- Alert on `UpdateAccessKey` setting a key back to Active (a reactivated
-  old key currently isn't detected)
-- Deploy with Terraform
-- Forward the same logs to Splunk and port the rules to SPL
-- State tracking (DynamoDB) to detect bursts, e.g. repeated failed logins
