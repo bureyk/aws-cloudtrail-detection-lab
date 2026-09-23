@@ -1,0 +1,48 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "ReadCloudTrailLogs",
+      "Effect": "Allow",
+      "Action": "s3:GetObject",
+      "Resource": "arn:aws:s3:::TRAIL_BUCKET/AWSLogs/ACCOUNT_ID/CloudTrail/*"
+    },
+    {
+      "Sid": "FixBucketPublicAccess",
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetBucketPublicAccessBlock",
+        "s3:PutBucketPublicAccessBlock"
+      ],
+      "Resource": "arn:aws:s3:::*"
+    },
+    {
+      "Sid": "DeactivateNewAccessKeys",
+      "Effect": "Allow",
+      "Action": "iam:UpdateAccessKey",
+      "Resource": "arn:aws:iam::ACCOUNT_ID:user/*"
+    },
+    {
+      "Sid": "RestartTrailLogging",
+      "Effect": "Allow",
+      "Action": "cloudtrail:StartLogging",
+      "Resource": "arn:aws:cloudtrail:us-east-2:ACCOUNT_ID:trail/org-trail"
+    },
+    {
+      "Sid": "SendAlerts",
+      "Effect": "Allow",
+      "Action": "sns:Publish",
+      "Resource": "arn:aws:sns:us-east-2:ACCOUNT_ID:security-alerts"
+    },
+    {
+      "Sid": "WriteOwnLogs",
+      "Effect": "Allow",
+      "Action": [
+        "logs:CreateLogGroup",
+        "logs:CreateLogStream",
+        "logs:PutLogEvents"
+      ],
+      "Resource": "arn:aws:logs:us-east-2:ACCOUNT_ID:log-group:/aws/lambda/cloudtrail-detector:*"
+    }
+  ]
+}
