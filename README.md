@@ -90,18 +90,25 @@ docs/SETUP.md                        build, test and teardown guide
 
 Run tests: `pip install boto3 && python -m unittest discover tests`
 
+
 ## Evidence
 
-<!-- Add screenshots (blur account ID, IPs, email) -->
+**Pipeline processing CloudTrail logs**
+![Healthy pipeline](images/pipeline-healthy.png)
 
-## What I learned
+**S3 public access: detected and auto-remediated**
+![Alert](images/s3-alert.png)
+![Block Public Access restored](images/s3-after.png)
 
-<!-- Write this yourself. -->
+**New access key: detected and auto-deactivated**
+![Alert](images/key-alert.png)
+![Key inactive](images/key-inactive.png)
 
-## Next steps
+**CloudTrail stopped: detected and logging restarted**
+![Trail stopped](images/trail-stopped.png)
+![Alert](images/trail-alert.png)
 
-- Alert on `UpdateAccessKey` setting a key back to Active (a reactivated
-  old key currently isn't detected)
-- Deploy with Terraform
-- Forward the same logs to Splunk and port the rules to SPL
-- State tracking (DynamoDB) to detect bursts, e.g. repeated failed logins
+**Detector failure: caught by CloudWatch alarm**
+The spike (~15:10–15:45 UTC) is the outage caused by a bad deploy; the alarm now catches this within 5 minutes.
+![Errors graph](images/errors-graph.png)
+![Alarm email](images/alarm-alert.png)
