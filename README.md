@@ -27,12 +27,12 @@ Stack: CloudTrail, S3, Lambda (Python 3.14), IAM, SNS, CloudWatch. Region: us-ea
 
 | Detection | Severity | Response | MITRE ATT&CK | Live test |
 |---|---|---|---|---|
-| S3 public access weakened | High | **Auto-remediate:** re-enable Block Public Access | T1530 Data from Cloud Storage | ✅ Fixed, alert in ~1 min |
-| New IAM access key created | Medium | **Auto-remediate:** deactivate key (allowlist supported) | T1098.001 Additional Cloud Credentials | ✅ Deactivated, alert in ~2–4 min |
-| CloudTrail logging stopped/modified | Critical | **Auto-remediate:** restart logging | T1562.008 Disable or Modify Cloud Logs | ✅ Logging restarted, alert in ~2 min |
-| IAM user console login without MFA | Medium | Alert | T1078.004 Valid Accounts: Cloud Accounts | ⚠️ Unit-tested only: org SCP denies `iam:CreateLoginProfile` |
-| Root console login | High | Alert | T1078.004 | ⚠️ Unit-tested only: account access is role-based |
-| Detector failing (CloudWatch alarm) | — | Alert | — | ✅ Fired after injected malformed event |
+| S3 public access weakened | High | **Auto-remediate:** re-enable Block Public Access | T1530 Data from Cloud Storage |  Fixed, alert in ~1 min |
+| New IAM access key created | Medium | **Auto-remediate:** deactivate key (allowlist supported) | T1098.001 Additional Cloud Credentials |  Deactivated, alert in ~2–4 min |
+| CloudTrail logging stopped/modified | Critical | **Auto-remediate:** restart logging | T1562.008 Disable or Modify Cloud Logs |  Logging restarted, alert in ~2 min |
+| IAM user console login without MFA | Medium | Alert | T1078.004 Valid Accounts: Cloud Accounts |  Unit-tested only: org SCP denies `iam:CreateLoginProfile` |
+| Root console login | High | Alert | T1078.004 |  Unit-tested only: account access is role-based |
+| Detector failing (CloudWatch alarm) | — | Alert | — |  Fired after injected malformed event |
 
 Timings are from single test runs; CloudTrail log delivery typically takes up to several minutes.
 
